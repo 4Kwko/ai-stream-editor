@@ -1,0 +1,135 @@
+/*
+ * Design tokens do AI Stream Editor — direção "sala de corte".
+ * Única fonte de cor, tipografia, espaçamento, forma e movimento.
+ * Componentes usam só os tokens semânticos (--color-*, --space-*, ...).
+ * Trocar a paleta = trocar os valores de "Paleta base" abaixo;
+ * os aliases semânticos não precisam mudar.
+ * Contraste conferido com WCAG AA (ver docs/implementation/design-system.md).
+ */
+
+:root {
+  color-scheme: dark;
+
+  /* ---- Paleta base (provisória) ----
+   * Grafite neutro: superfícies sem tom azul, como em salas de cor,
+   * para não enviesar a leitura do vídeo. Um acento laranja-sinal
+   * (luz de tally/REC) separado das cores de estado. */
+  --palette-graphite-0: #0f1011;
+  --palette-graphite-1: #151617;
+  --palette-graphite-2: #1b1c1e;
+  --palette-graphite-3: #232427;
+  --palette-graphite-4: #2d2f32;
+  --palette-graphite-5: #3a3d41;
+  --palette-graphite-6: #4c5056;
+  --palette-ink-1: #ededee;
+  --palette-ink-2: #b3b6bb;
+  --palette-ink-3: #8f939a;
+  --palette-signal: #f08a3c;
+  --palette-signal-bright: #f59d57;
+  --palette-signal-ink: #1c1006;
+  --palette-green: #4fbf87;
+  --palette-red: #ef6461;
+  --palette-yellow: #e2c45c;
+
+  /* ---- Cor: aliases semânticos ---- */
+  --color-background: var(--palette-graphite-0);
+  --color-surface: var(--palette-graphite-1);
+  --color-surface-raised: var(--palette-graphite-2);
+  --color-surface-hover: var(--palette-graphite-3);
+  --color-surface-active: var(--palette-graphite-4);
+  --color-media: #000;
+
+  --color-text-primary: var(--palette-ink-1);
+  --color-text-secondary: var(--palette-ink-2);
+  --color-text-tertiary: var(--palette-ink-3);
+  --color-text-disabled: var(--palette-graphite-6);
+
+  --color-border: var(--palette-graphite-4);
+  --color-border-subtle: var(--palette-graphite-3);
+  --color-border-strong: var(--palette-graphite-5);
+
+  --color-accent: var(--palette-signal);
+  --color-accent-hover: var(--palette-signal-bright);
+  --color-accent-contrast: var(--palette-signal-ink);
+  --color-accent-soft: color-mix(in srgb, var(--palette-signal) 14%, transparent);
+  --color-focus: var(--palette-signal-bright);
+
+  --color-success: var(--palette-green);
+  --color-success-soft: color-mix(in srgb, var(--palette-green) 14%, transparent);
+  --color-danger: var(--palette-red);
+  --color-danger-soft: color-mix(in srgb, var(--palette-red) 14%, transparent);
+  --color-warning: var(--palette-yellow);
+  --color-warning-soft: color-mix(in srgb, var(--palette-yellow) 12%, transparent);
+
+  /* Avaliação usa as cores de estado: escolha positiva/negativa. */
+  --color-liked: var(--color-success);
+  --color-liked-soft: var(--color-success-soft);
+  --color-disliked: var(--color-danger);
+  --color-disliked-soft: var(--color-danger-soft);
+
+  /* ---- Tipografia ----
+   * Plex Sans na interface; Plex Mono para números (duração, datas,
+   * contadores), lidos como timecode. Escala densa de ferramenta. */
+  --font-sans: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Cascadia Mono', Consolas, monospace;
+  --text-xs: 0.6875rem; /* 11px: rótulos mono, kbd */
+  --text-sm: 0.75rem; /* 12px: metadados */
+  --text-md: 0.8125rem; /* 13px: corpo e controles */
+  --text-lg: 0.9375rem; /* 15px: títulos de card */
+  --text-xl: 1.125rem; /* 18px: título de seção */
+  --leading-tight: 1.25;
+  --leading-normal: 1.45;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --tracking-label: 0.04em;
+
+  /* ---- Espaçamento (base 4px) ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* ---- Forma ----
+   * Raios curtos e iguais em componentes do mesmo nível: quadros de mídia
+   * e cards 6px, controles 4px, marcadores 2px. Pílula só no indicador
+   * de estado (ponto). */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-round: 999px;
+  --border-width: 1px;
+
+  /* Elevação pela luminosidade da superfície, não por sombra.
+   * Uma única sombra, só para camadas flutuantes. */
+  --shadow-float: 0 8px 24px rgb(0 0 0 / 0.45), 0 0 0 1px var(--color-border);
+
+  /* ---- Controles ---- */
+  --control-height-sm: 28px;
+  --control-height-md: 32px;
+
+  /* ---- Movimento ----
+   * Três durações e duas curvas. Só transform, opacity e cores. */
+  --motion-instant: 90ms; /* pressão, toque */
+  --motion-fast: 160ms; /* hover, foco, troca de estado */
+  --motion-normal: 240ms; /* indicador de seleção, expansão de painel */
+  /* Ciclo dos poucos loops (tally ativo, barra sem estimativa, esqueleto).
+   * Só existem enquanto há trabalho em andamento. */
+  --motion-loop: 1.6s;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1); /* entra rápido, assenta devagar */
+  --ease-exit: cubic-bezier(0.3, 0, 0.8, 0.15);
+
+  /* ---- Camadas ---- */
+  --z-sticky: 10;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-instant: 0ms;
+    --motion-fast: 0ms;
+    --motion-normal: 0ms;
+  }
+}
