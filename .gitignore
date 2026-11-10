@@ -76,3 +76,6 @@ Desktop.ini
 
 # graft's local graph cache — regenerable, not committed (run `graft build`).
 /graft/
+
+# Metadados de instalação editável (pip install -e).
+*.egg-info/

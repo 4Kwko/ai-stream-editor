@@ -1,0 +1,3 @@
+# Referências de terceiros usadas pelos agentes; não contam nas estatísticas de linguagem.
+.agents/** linguist-vendored
+docs/** linguist-documentation
