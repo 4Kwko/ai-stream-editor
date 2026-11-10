@@ -11,7 +11,7 @@ Tudo roda no computador do usuário: download, transcrição, seleção e render
 ## Como funciona
 
 ```mermaid
-flowchart LR
+flowchart TD
     A[Canal da Twitch] -->|yt-dlp, a cada 5 min| B[Supervisor de VODs]
     B -->|VOD terminado| C[Download e verificação]
     C --> D[Transcrição local<br/>faster-whisper]

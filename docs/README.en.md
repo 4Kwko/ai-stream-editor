@@ -11,7 +11,7 @@ Everything runs on the user's computer: download, transcription, selection and r
 ## How it works
 
 ```mermaid
-flowchart LR
+flowchart TD
     A[Twitch channel] -->|yt-dlp, every 5 min| B[VOD supervisor]
     B -->|finished VOD| C[Download and checks]
     C --> D[Local transcription<br/>faster-whisper]
